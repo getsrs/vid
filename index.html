@@ -1,3 +1,45 @@
+<script>
+// Array of allowed passwords
+var passwords = ["rahul", "tulsi", "pooja","jyoti","chandan","deepak","roshani","jitendra"];
+
+// Check if user is already logged in
+var isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+if (!isLoggedIn) {
+    // Flag to track if the password is correct
+    var passwordCorrect = false;
+
+    // Loop until the correct password is entered or the user cancels
+    while (!passwordCorrect) {
+        // Prompt the user for password input
+        var enteredPassword = prompt("Please enter the password to enter this post:", "");
+
+        // Check if user clicked cancel
+        if (enteredPassword === null) {
+            // Show alert to prompt user to enter password
+            alert("Please enter the password.");
+        } else {
+            // Check if entered password is in the array of allowed passwords
+            if (passwords.includes(enteredPassword)) {
+                passwordCorrect = true; // Set flag to true if password is correct
+            } else {
+                // Password is incorrect, ask user to try again
+                alert("Incorrect password. Please try again.");
+            }
+        }
+    }
+
+    // If password is correct, set the login flag in sessionStorage
+    if (passwordCorrect) {
+        sessionStorage.setItem("isLoggedIn", true);
+    } else {
+        // If password is incorrect or user clicked Cancel multiple times, redirect to a page for wrong password
+        window.location.href = "#";
+    }
+}
+</script>
+
+
 <html lang="en">
 <head>
   <meta charset="UTF-8"></meta>
